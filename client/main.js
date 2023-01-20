@@ -36,10 +36,6 @@ root.render(
           </button>
         </div>
       </nav>
-      {/* <Signup /> */}
-      {/* <Login /> */}
-      {/* <Dashboard /> */}
-      {/* <Board /> */}
       <Router />
     </MemoryRouter>
   </Provider>

@@ -6,7 +6,6 @@ import "../styles/Login.scss"
 
 function Login() {
 
-  // state control of username and password
   const navigate = useNavigate();
 
   const [userName, setUserName] = useState("");
@@ -43,7 +42,6 @@ function Login() {
         }
       })
       .catch(err =>console.log(err))
-    // navigate('/dashboard')
   }
   
   const checkCookie = () => {

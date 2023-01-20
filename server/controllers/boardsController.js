@@ -4,12 +4,10 @@ const boardsController = {};
 
 boardsController.getBoardFromUser = async (req, res, next) => {
   const { id } = req.params;
-  // console.log(id);
   let queryText = "SELECT story_id FROM story_to_board WHERE board_id = $1";
   let params = [id];
   let dbResponse = await db.query(queryText, params);
   const storyId = dbResponse.rows;
-  // console.log(storyId);
   const stories = [];
 
   for (const story of storyId) {
@@ -39,7 +37,6 @@ boardsController.getBoardFromUser = async (req, res, next) => {
       taskItem.task_id = dbResponse.rows[0].task_id;
       storyItem.tasks.push(taskItem);
     }
-    // storyItem.tasks = dbResponse.rows;
   }
 
   queryText = "SELECT title FROM board WHERE _id = $1";
@@ -87,7 +84,6 @@ boardsController.getBoardFromUserUsingCache = async (req, res, next) => {
       storyItem.tasks.push(taskItem);
       console.log(taskItem, "taskItem");
     }
-    // storyItem.tasks = dbResponse.rows;
   }
 
   queryText = "SELECT title FROM board WHERE _id = $1";
@@ -151,28 +147,23 @@ boardsController.createStory = async (req, res, next) => {
 
 boardsController.createTask = async (req, res, next) => {
   try {
-    // console.log(req.body.story_id);
     const { description, status, priority, story_id } = req.body;
     let queryText =
       "INSERT INTO task (description, status, priority) VALUES ($1, $2, $3) RETURNING _id;";
     let params = [description, status, priority];
     let dbResponse = await db.query(queryText, params);
-    // console.log("i was here");
     res.locals.task_id = dbResponse.rows[0]._id;
 
     queryText =
       "INSERT INTO task_to_story (task_id, story_id) VALUES ($1, $2);";
     params = [dbResponse.rows[0]._id, story_id];
     dbResponse = await db.query(queryText, params);
-    // console.log("i was here2");
 
     queryText = "SELECT board_id FROM story_to_board WHERE story_id = $1";
     params = [story_id];
     dbResponse = await db.query(queryText, params);
-    // console.log("i was here3");
     console.log(dbResponse.rows);
     res.locals.board_id = dbResponse.rows[0].board_id;
-    // console.log("i was here4");
 
     return next();
   } catch (error) {

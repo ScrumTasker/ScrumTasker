@@ -17,14 +17,6 @@ function Signup() {
     setSignup(true)
     setUserName("");
     setPassword("");
-
-    // fetch("/api/signup", {
-    //   method: "POST",
-    //making ssid with
-    // fetch("/api/signup", {
-    //   method: "POST",
-    // })
-    // .then(response. )
   }
   
   return (
@@ -58,14 +50,7 @@ function Signup() {
             type="password" />
           </div>
           <button className="login-button">Sign Up</button> 
-        
       </form>
-      
-
-      {/* directing to the signup page. */}
-      {/* <button onClick={navigate('/signup')}>Sign up</button> */}
-      
-
     </div>
   )
 }

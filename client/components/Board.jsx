@@ -40,25 +40,6 @@ function Board() {
       setTodo();
       for (const story of responseJson.stories) {
         setTodo([...toDo, story.tasks])
-        // for (const task of story.tasks) {
-        //   task.story_id = story.story_id;
-        //   switch (task.status) {
-        //     case "TO_DO":
-        //       setToDo(task)
-        //       break;
-        //     case "IN_PROCESS":
-        //       setProcess((process) => [...process, task])
-        //       break;
-        //     case "IN_TESTING":
-        //       setTesting((testing) => [...testing, task])
-        //       break;
-        //     case "DONE":
-        //       setDone((done) => [...done, task])
-        //       break;
-        //     default:
-        //       break;
-        //   }
-        // }
       }
    })
 }
@@ -110,7 +91,6 @@ function Board() {
   
 
   useEffect(() => {
-    // fetched object data should have board object and username
     fetchAndSort();
   }, [])
 
@@ -118,10 +98,7 @@ function Board() {
   
   return (
     <div>
-      {/* should have username on left top */}
-      
-
-      {/* should have functionality of creating new boad */}
+     
       <body className="cards-container">
         <div className="column">
           <h1 className="board-heading">Stories</h1>
